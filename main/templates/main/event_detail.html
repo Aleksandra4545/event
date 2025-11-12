@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ event.title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .event-detail { max-width: 600px; }
+        .btn { padding: 10px 15px; text-decoration: none; background: #007bff; color: white; border-radius: 4px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="event-detail">
+        <h1>{{ event.title }}</h1>
+        <p><strong>Описание:</strong> {{ event.description }}</p>
+        <p><strong>Тип:</strong> {{ event.get_event_type_display }}</p>
+        <p><strong>Дата:</strong> {{ event.date }}</p>
+        <p><strong>Место:</strong> {{ event.location }}</p>
+        <p><strong>Бюджет:</strong> {{ event.budget }} руб.</p>
+        <p><strong>Клиент:</strong> {{ event.client_name }}</p>
+        <p><strong>Телефон:</strong> {{ event.client_phone }}</p>
+        <p><strong>Email:</strong> {{ event.client_email }}</p>
+        
+        <a href="{% url 'event_list' %}" class="btn">Назад к списку</a>
+        <a href="{% url 'event_update' event.pk %}" class="btn">Редактировать</a>
+        <a href="{% url 'event_delete' event.pk %}" class="btn" style="background: #dc3545;">Удалить</a>
+    </div>
+</body>
+</html>

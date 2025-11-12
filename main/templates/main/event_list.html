@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мероприятия</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .event { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        .completed { background-color: #f0f0f0; }
+        .btn { padding: 10px 15px; text-decoration: none; background: #007bff; color: white; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Мероприятия</h1>
+    <a href="{% url 'event_create' %}" class="btn">Создать новое мероприятие</a>
+    
+    {% for event in events %}
+    <div class="event {% if event.is_completed %}completed{% endif %}">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Тип:</strong> {{ event.get_event_type_display }}</p>
+        <p><strong>Дата:</strong> {{ event.date }}</p>
+        <p><strong>Клиент:</strong> {{ event.client_name }}</p>
+        <p><strong>Бюджет:</strong> {{ event.budget }} руб.</p>
+        <a href="{% url 'event_detail' event.pk %}">Подробнее</a>
+        <a href="{% url 'event_update' event.pk %}">Редактировать</a>
+    </div>
+    {% empty %}
+    <p>Мероприятий пока нет.</p>
+    {% endfor %}
+</body>
+</html>
